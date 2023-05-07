@@ -1,5 +1,6 @@
 import datetime
 import re
+import string
 import time
 from pathlib import Path
 from typing import Optional
@@ -48,6 +49,9 @@ def parse_mozilla_cookie_file(cookie_file_path: Path):
                 line_fields = line.strip().split("\t")
                 cookies[line_fields[5]] = line_fields[6]
     return cookies
+
+
+valid_filename_chars = frozenset("-_.() " + string.ascii_letters + string.digits)
 
 
 @click.command()
@@ -117,13 +121,15 @@ def main(config: Path, sport_type: Optional[str]):
             continue
 
         # Export GPX file.
-        file_path = Path(
-            str(config_parsed.export_path / config_parsed.export_format).format(
+        file_path = config_parsed.export_path / "".join(
+            c
+            for c in str(config_parsed.export_format).format(
                 start_date=activity.start_date.isoformat().replace(":", "_"),
                 id=activity.id,
                 sport_type=activity.sport_type,
                 name=activity.name,
             )
+            if c in valid_filename_chars
         )
         print(f"Exporting {activity.id} to {file_path}...", end="")
         response = requests.get(
