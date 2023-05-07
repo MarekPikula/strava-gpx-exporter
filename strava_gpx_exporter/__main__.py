@@ -125,12 +125,13 @@ def main(config: Path, sport_type: Optional[str]):
                 name=activity.name,
             )
         )
-        print(f"Exporting {activity.id} to {file_path}...")
+        print(f"Exporting {activity.id} to {file_path}...", end="")
         response = requests.get(
             f"https://www.strava.com/activities/{activity.id}/export_gpx",
             cookies=cookies,
             timeout=10,
         )
+        print(" done")
         if response.status_code != 200:
             print(f"Wrong response for export of activity {activity.id}.")
             continue
