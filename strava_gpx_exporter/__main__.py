@@ -119,7 +119,7 @@ def main(config: Path, sport_type: Optional[str]):
         # Export GPX file.
         file_path = Path(
             str(config_parsed.export_path / config_parsed.export_format).format(
-                start_date=activity.start_date.isoformat(),
+                start_date=activity.start_date.isoformat().replace(":", "_"),
                 id=activity.id,
                 sport_type=activity.sport_type,
                 name=activity.name,
