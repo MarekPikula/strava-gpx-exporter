@@ -1,0 +1,5 @@
+{
+    "yaml.schemas": {
+        "strava_gpx_exporter/config.schema.json": ["config.yaml", "config.example.yaml"]
+    }
+}

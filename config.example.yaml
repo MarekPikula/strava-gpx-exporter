@@ -1,0 +1,6 @@
+api:
+  client_id: 12345
+  client_secret: SECRET
+export_path: export
+export_format: '{start_date}_{id}_{sport_type}_{name}.gpx'
+strava_cookie_session_path: cookies-strava-com.txt

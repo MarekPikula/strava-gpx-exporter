@@ -1,0 +1,30 @@
+[tool.poetry]
+name = "strava-gpx-exporter"
+version = "0.1.0"
+description = "Strava GPX exporter"
+authors = ["Marek Pikuła <marek@serenitycode.dev>"]
+license = "MIT"
+readme = "README.md"
+packages = [{include = "strava_gpx_exporter"}]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+pydantic = "^1.10.7"
+pydantic-yaml = {extras = ["ruamel"], version = "^0.11.2"}
+stravalib = "^1.3.0"
+click = "^8.1.3"
+requests = "^2.30.0"
+
+[tool.poetry.group.dev.dependencies]
+black = "^23.3.0"
+mypy = "^1.2.0"
+pydocstyle = "^6.3.0"
+pylint = "^2.17.4"
+isort = "^5.12.0"
+
+[tool.poetry.scripts]
+strava_gpx_exporter = 'strava_gpx_exporter.__main__:main'
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
